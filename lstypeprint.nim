@@ -47,9 +47,9 @@ proc `$`*(thisNode: LsNode): string =
       let thisSeq = thisNode.seqVal
       for item in thisSeq:
         nodeString.add $item
-        nodeString.add ", "
+        nodeString.add " "
       if len(thisSeq) > 0:
-        nodeString = nodeString[0..^3]  # remove trailing ", "
+        nodeString = nodeString[0..^2]  # remove trailing " "
       nodeString.add "]"
     of Seq:
       nodeString.add "("
@@ -149,7 +149,7 @@ proc prettyPrint*(thisNode: LsNode) =
       for count, item in thisList:
         prettyPrint(item)
         if count < len(thisList)-1:
-          stdout.styledWrite(fgGreen, ", ")
+          stdout.styledWrite(fgGreen, " ")
       if len(thisList) > 0: stdout.styledWrite(" ")
       stdout.styledWrite(fgGreen, styleBright, "]")
     of Seq:
